@@ -26,3 +26,8 @@ jobs:
           password: ${{ secrets.DOCKER_ACCESS_TOKEN }}
       - name: Build and push Docker images
         uses: docker/build-push-action@v3.2.0
+        with:
+          context: .
+          file: ./Dockerfile
+          tags: test:t10
+          push: true
