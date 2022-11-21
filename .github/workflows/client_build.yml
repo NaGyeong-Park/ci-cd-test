@@ -27,4 +27,5 @@ jobs:
         uses: docker/build-push-action@v3.2.0
         with:
           context: ./client
+          tags: 1.0
           push: true
