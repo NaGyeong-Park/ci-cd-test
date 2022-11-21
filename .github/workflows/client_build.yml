@@ -1,0 +1,32 @@
+name: client build
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: "18.x"
+      - name: client source build
+        run: |
+          cd client
+          yarn
+          yarn build
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: nagyeong-park
+          password: ${{ secrets.DOCKER_ACCESS_TOKEN }}
+      - name: Build and push Docker images
+        uses: docker/build-push-action@v3.2.0
+        with:
+          context: ./client
+          tags: test:t10
+          push: true
