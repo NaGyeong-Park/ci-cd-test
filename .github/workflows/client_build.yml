@@ -1,6 +1,6 @@
 name: client build
 on:
-  pull_request:
+  push:
     branches:
       - main
 
@@ -22,7 +22,7 @@ jobs:
         uses: docker/login-action@v1
         with:
           registry: ghcr.io
-          username: nagyeong-park
+          username: Nagyeong-Park
           password: ${{ secrets.DOCKER_ACCESS_TOKEN }}
       - name: Build and push Docker images
         uses: docker/build-push-action@v3.2.0
