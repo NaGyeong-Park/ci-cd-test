@@ -22,7 +22,7 @@ jobs:
         uses: docker/login-action@v1
         with:
           registry: ghcr.io
-          username: kumsil1006
+          username: nagyeong-park
           password: ${{ secrets.DOCKER_ACCESS_TOKEN }}
       - name: Build and push Docker images
         uses: docker/build-push-action@v3.2.0
